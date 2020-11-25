@@ -1,2 +1,2 @@
 ## logger
-обертка над logrus
+обертка над [logrus](github.com/sirupsen/logrus)
