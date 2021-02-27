@@ -11,13 +11,17 @@ import (
 type logger struct {
 }
 
-func SetContext(log *logrus.Logger) context.Context {
+type Logger interface {
+	logrus.FieldLogger
+}
+
+func SetContext(log Logger) context.Context {
 	return context.WithValue(context.Background(), &logger{}, log.WithFields(map[string]interface{}{
 		"time": time.Now(),
 	}))
 }
 
-func NewLogger() *logrus.Logger {
+func NewLogger() Logger {
 	log := logrus.StandardLogger()
 
 	log.SetOutput(os.Stdout)
@@ -31,9 +35,9 @@ func NewLogger() *logrus.Logger {
 	return log
 }
 
-func GetLogger(ctx context.Context) *logrus.Logger {
+func GetLogger(ctx context.Context) Logger {
 	value := ctx.Value(&logger{})
-	log, ok := value.(*logrus.Logger)
+	log, ok := value.(Logger)
 	if !ok {
 		log = NewLogger()
 	}
