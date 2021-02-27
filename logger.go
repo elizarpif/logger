@@ -45,3 +45,6 @@ func GetLogger(ctx context.Context) Logger {
 	return log
 }
 
+func WithLogger(ctx context.Context, log Logger) context.Context {
+	return context.WithValue(ctx, logger{}, log)
+}
