@@ -1,7 +1,7 @@
 ## logger
-обертка над [logrus](https://github.com/sirupsen/logrus)
+wrapper over [logrus](https://github.com/sirupsen/logrus)
 
-передает логгер в "контексте"
+sends logger in the "context"
 
 ```go
 log := NewLogger()
@@ -12,5 +12,5 @@ ctx := WithLogger(context.Background, log)
 GetLogger(ctx).WithField("some_field", 256).Error("some error")
 ```
 
-логирует по дефолту используя текущее время
+by default, logges using current datetime
 
