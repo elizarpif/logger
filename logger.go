@@ -21,6 +21,8 @@ func SetContext(log Logger) context.Context {
 	}))
 }
 
+// NewLogger creates new logger
+// todo maybe set settings?
 func NewLogger() Logger {
 	log := logrus.StandardLogger()
 
@@ -35,6 +37,7 @@ func NewLogger() Logger {
 	return log
 }
 
+// GetLogger gets logger from context
 func GetLogger(ctx context.Context) Logger {
 	value := ctx.Value(&logger{})
 	log, ok := value.(Logger)
