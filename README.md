@@ -4,13 +4,19 @@ wrapper over [logrus](https://github.com/sirupsen/logrus)
 sends logger in the "context"
 
 ```go
-log := NewLogger()
-ctx := WithLogger(context.Background, log) 
+log := logger.NewLogger()
+ctx := logger.WithLogger(context.Background(), log) 
 ```
 
 ```go
-GetLogger(ctx).WithField("some_field", 256).Error("some error")
+logger.GetLogger(ctx).WithField("some_field", 256).Error("some error")
 ```
 
 by default, logges using current datetime
 
+
+### Installation
+
+```shell
+ go get github.com/elizarpif/logger 
+ ```
